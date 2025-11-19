@@ -19,6 +19,40 @@ A secure proxy API for Intuit QuickBooks that restricts access to only the Custo
 
 ## Installation
 
+### Option 1: Docker (Recommended)
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd quickbooks-proxy
+```
+
+2. Create your `.env` file:
+```bash
+cp .env.example .env
+# Edit .env with your QuickBooks credentials
+```
+
+3. Build and run with Docker Compose:
+```bash
+docker-compose up -d
+```
+
+Or build and run with Docker directly:
+```bash
+# Build the image
+docker build -t quickbooks-proxy .
+
+# Run the container
+docker run -d \
+  --name quickbooks-proxy \
+  -p 8000:8000 \
+  --env-file .env \
+  quickbooks-proxy
+```
+
+### Option 2: Local Installation
+
 1. Clone the repository:
 ```bash
 git clone <repository-url>
@@ -207,6 +241,49 @@ curl -X GET "http://localhost:8000/v3/company/any_realm_id/query?query=SELECT * 
 - Verify your `QB_REFRESH_TOKEN` is still valid and not expired
 - Get new tokens from the [Intuit OAuth Playground](https://developer.intuit.com/app/developer/playground) and update your `.env` file
 
+## Docker Commands
+
+### Build the Docker image
+```bash
+docker build -t quickbooks-proxy .
+```
+
+### Run the container
+```bash
+docker run -d \
+  --name quickbooks-proxy \
+  -p 8000:8000 \
+  --env-file .env \
+  quickbooks-proxy
+```
+
+### View logs
+```bash
+docker logs -f quickbooks-proxy
+```
+
+### Stop the container
+```bash
+docker stop quickbooks-proxy
+```
+
+### Remove the container
+```bash
+docker rm quickbooks-proxy
+```
+
+### Using Docker Compose
+```bash
+# Start the service
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the service
+docker-compose down
+```
+
 ## Project Structure
 
 ```
@@ -216,6 +293,9 @@ quickbooks-proxy/
 ├── proxy.py             # Request filtering and forwarding logic
 ├── config.py            # Configuration management
 ├── pyproject.toml       # Project dependencies
+├── Dockerfile           # Docker configuration
+├── docker-compose.yml   # Docker Compose configuration
+├── .dockerignore        # Docker ignore file
 ├── .env.example         # Environment variables template
 └── README.md            # This file
 ```
