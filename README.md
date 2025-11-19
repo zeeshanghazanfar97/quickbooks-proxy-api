@@ -304,10 +304,6 @@ quickbooks-proxy/
 └── README.md            # This file
 ```
 
-## License
-
-[Add your license here]
-
 ## Support
 
 For issues related to:
