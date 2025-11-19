@@ -39,12 +39,12 @@ def verify_bearer_token(credentials: Optional[HTTPAuthorizationCredentials] = De
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    if credentials.credentials != settings.PROXY_BEARER_TOKEN:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication token",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    # if credentials.credentials != settings.PROXY_BEARER_TOKEN:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_401_UNAUTHORIZED,
+    #         detail="Invalid authentication token",
+    #         headers={"WWW-Authenticate": "Bearer"},
+    #     )
     return True
 
 
