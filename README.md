@@ -160,7 +160,7 @@ All Customers entity endpoints are proxied to QuickBooks API. The proxy maintain
 ```bash
 # Note: The realm_id in the URL will be replaced with your configured QB_REALM_ID
 # If PROXY_BEARER_TOKEN is set, include it in the Authorization header
-curl -X GET "http://localhost:8000/v3/company/any_realm_id/query?query=SELECT * FROM Customer" \
+curl -X GET "https://quickbooks.wardsrental.com/v3/company/any_realm_id/query?query=SELECT * FROM Customer" \
   -H "Accept: application/json" \
   -H "Authorization: Bearer your_proxy_bearer_token_here"
 ```
@@ -168,16 +168,18 @@ curl -X GET "http://localhost:8000/v3/company/any_realm_id/query?query=SELECT * 
 ### Get Specific Customer
 
 ```bash
-curl -X GET "http://localhost:8000/v3/company/any_realm_id/customers/1" \
-  -H "Accept: application/json"
+curl -X GET "https://quickbooks.wardsrental.com/v3/company/any_realm_id/customers/1" \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer your_proxy_bearer_token_here"
 ```
 
 ### Create Customer
 
 ```bash
-curl -X POST "http://localhost:8000/v3/company/any_realm_id/customers" \
+curl -X POST "https://quickbooks.wardsrental.com/v3/company/any_realm_id/customers" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
+  -H "Authorization: Bearer your_proxy_bearer_token_here" \
   -d '{
     "DisplayName": "Test Customer",
     "CompanyName": "Test Company"
@@ -187,9 +189,10 @@ curl -X POST "http://localhost:8000/v3/company/any_realm_id/customers" \
 ### Update Customer
 
 ```bash
-curl -X POST "http://localhost:8000/v3/company/any_realm_id/customers" \
+curl -X POST "https://quickbooks.wardsrental.com/v3/company/any_realm_id/customers" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
+  -H "Authorization: Bearer your_proxy_bearer_token_here" \
   -d '{
     "Id": "1",
     "SyncToken": "0",
@@ -200,8 +203,9 @@ curl -X POST "http://localhost:8000/v3/company/any_realm_id/customers" \
 ### Query Customers
 
 ```bash
-curl -X GET "http://localhost:8000/v3/company/any_realm_id/query?query=SELECT * FROM Customer WHERE Active = true" \
-  -H "Accept: application/json"
+curl -X GET "https://quickbooks.wardsrental.com/v3/company/any_realm_id/query?query=SELECT * FROM Customer WHERE Active = true" \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer your_proxy_bearer_token_here"
 ```
 
 ## Environment Variables
